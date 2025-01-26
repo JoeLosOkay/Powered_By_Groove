@@ -1,5 +1,5 @@
 /// @description Initialize note
-switch(direction) {
+switch(note_direction) {
 	case NoteState.UP:
 	  sprite_index = up_arrow;
 	  break;
@@ -14,11 +14,11 @@ switch(direction) {
 	  break;
 	case NoteState.P_UP:
 	  sprite_index = powered_arrow;
-	  image_angle = 270;
+	  image_angle = 90;
 	  break;
     case NoteState.P_DOWN:
 	  sprite_index = powered_arrow;
-	  image_angle = 90;
+	  image_angle = 270;
 	  break;
 	case NoteState.P_LEFT:
 	  sprite_index = powered_arrow;
