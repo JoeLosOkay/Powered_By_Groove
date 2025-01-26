@@ -35,8 +35,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"UI Elements",
-    "path":"folders/Sprites/UI Elements.yy",
+    "name":"Arrows",
+    "path":"folders/Sprites/UI Elements/Arrows.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -31,3 +31,8 @@ switch(note_direction) {
 	  show_debug_message("ERROR: NoteState not set for note");
 	  break;
 }
+
+// Function that the collision line can call to let the note know it's been hit
+function hit() {
+	num_hits++;
+}

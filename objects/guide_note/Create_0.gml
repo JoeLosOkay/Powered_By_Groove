@@ -3,7 +3,6 @@
 show_debug_message("Spawning guide note: " + string(note_direction));
 switch(note_direction) {
 	case NoteState.UP:
-	  sprite_index = guide_arrow;
 	  image_angle = 90;
 	  break;
     case NoteState.DOWN:
