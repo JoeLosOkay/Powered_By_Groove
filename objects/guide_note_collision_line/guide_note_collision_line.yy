@@ -34,6 +34,7 @@
     {"$GMObjectProperty":"v1","%Name":"note_direction","filters":[],"listItems":[],"multiselect":false,"name":"note_direction","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
     {"$GMObjectProperty":"v1","%Name":"touching_note","filters":[],"listItems":[],"multiselect":false,"name":"touching_note","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"activated","filters":[],"listItems":[],"multiselect":false,"name":"activated","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
+    {"$GMObjectProperty":"v1","%Name":"miss_line","filters":[],"listItems":[],"multiselect":false,"name":"miss_line","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

@@ -33,6 +33,7 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 //
 // Each guide note will use six collision lines to determine how accurately
 // the player hits each note. 
+
 { // LEFT GUIDE ARROW COLLISION LINES
 	var left_guide_collision_line_0 = instance_create_depth(17, 145, global.GUIDES_LAYER_DEPTH, 
 	  guide_note_collision_line,
@@ -183,6 +184,32 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 	  {
 		  note_direction: NoteState.DOWN
 	  }
+	);
+}
+{ // MISSED NOTE COLLISION LINES
+	var down_guide_missed_note = instance_create_depth(53, 205, global.GUIDES_LAYER_DEPTH, 
+		  guide_note_collision_line,
+		  {
+			  miss_line: true
+		  }
+		);
+	var up_guide_missed_note = instance_create_depth(86, 205, global.GUIDES_LAYER_DEPTH, 
+		  guide_note_collision_line,
+		  {
+			  miss_line: true
+		  }
+	);
+	var right_guide_missed_note = instance_create_depth(122, 205, global.GUIDES_LAYER_DEPTH, 
+		  guide_note_collision_line,
+		  {
+			  miss_line: true
+		  }
+	);
+	var left_guide_missed_note = instance_create_depth(17, 205, global.GUIDES_LAYER_DEPTH, 
+		  guide_note_collision_line,
+		  {
+			  miss_line: true
+		  }
 	);
 }
 

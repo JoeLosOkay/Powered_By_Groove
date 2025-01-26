@@ -36,3 +36,8 @@ switch(note_direction) {
 function hit() {
 	num_hits++;
 }
+
+// Function that missed_note_collision_line can call to let the note know it was missed
+function miss() {
+	missed = true;
+}
