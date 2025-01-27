@@ -2,7 +2,6 @@
 
 // Spawn a random note every 2 seconds
 if(current_time - last_time >= interval) {
-	random_set_seed(current_time);
 	var note_direction = irandom_range(1, 4);
 	var note_spawn_location_x = 0;
 	

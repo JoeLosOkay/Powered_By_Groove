@@ -1,8 +1,9 @@
 /// @description Set up the song controller.
 
-// Layer Names
-global.GUIDES_LAYER_DEPTH = 1;
-global.NOTES_LAYER_DEPTH = 2;
+random_set_seed(current_time); // Set the seed for the game
+
+// TODO  Control objects should probably be created programmatically along 
+//       with the global_stuff object for more control over initialization.
 
 // Create Guide Notes
 var left_guide_arrow_inst = instance_create_depth(17, 160, global.GUIDES_LAYER_DEPTH, guide_note, 
@@ -213,6 +214,9 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 	);
 }
 
+// Create Message Spawner
+
+
 // Set up timer
 last_time = current_time;
-interval = 2000;
+interval = 300;
