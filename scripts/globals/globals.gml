@@ -13,8 +13,8 @@ enum NoteState {
 }
 
 // Layer Names
-global.GUIDES_LAYER_DEPTH = 1;
-global.NOTES_LAYER_DEPTH = 2;
+global.GUIDES_LAYER_DEPTH = 2;
+global.NOTES_LAYER_DEPTH = 1;
 global.UI_LAYER_DEPTH = 3;
 
 // The chance that a powered note appears. 1/X, where 'X' is the chance.

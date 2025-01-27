@@ -1,4 +1,3 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description Deactivate the collision line
 
-activated = false; // Only allow one activate per step
+//activated = false;

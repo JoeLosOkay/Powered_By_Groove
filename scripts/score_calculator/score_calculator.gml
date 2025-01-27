@@ -5,7 +5,8 @@ function score_calculator(num_hits) {
 	
     switch(num_hits) {
 		case 0: // miss
-		  break;
+		  spawn_track_message(num_hits);
+		  return;
 		case 1:
 		  power_points = global.BASE_ONE_COLLISION_POINTS * global.current_multiplier;
 		  break;
