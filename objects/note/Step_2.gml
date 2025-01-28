@@ -34,5 +34,6 @@ if(num_hits > 0) {
 }
 
 if(missed) {
-	instance_destroy(id);
+	terminating = true;
+	instance_destroy();
 }

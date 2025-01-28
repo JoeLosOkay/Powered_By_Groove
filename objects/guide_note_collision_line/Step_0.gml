@@ -13,7 +13,7 @@ for(var i = 0; i < size; i++) {
 			falling_note.miss();
 		}
 		if ( activated == true ) {
-			if(parent_collision_controller != noone) {
+			if(parent_collision_controller != noone && !falling_note.terminating) {
 				parent_collision_controller.register_collision({
 					note_timestamp: falling_note.note_timestamp,
 					note_inst_id: falling_note
