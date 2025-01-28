@@ -1,5 +1,7 @@
 /// @description Set up the song controller.
 
+
+
 random_set_seed(current_time); // Set the seed for the game
 
 // TODO  Control objects should probably be created programmatically along 
@@ -7,6 +9,8 @@ random_set_seed(current_time); // Set the seed for the game
 
 // TODO  I probably don't need to be using var for all of these instantiations...
 //       It may cause problems in the future...
+
+// TODO  Globals for all of the magic numbers in this horrendous create event.
 
 // Create Guide Notes
 var left_guide_arrow_inst = instance_create_depth(17, 160, global.GUIDES_LAYER_DEPTH, guide_note, 
@@ -267,4 +271,4 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 
 // Set up timer
 last_time = current_time;
-interval = 5;
+interval = 500;

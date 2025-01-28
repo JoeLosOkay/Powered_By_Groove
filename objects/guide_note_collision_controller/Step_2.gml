@@ -8,23 +8,37 @@
 
 var earliest_time = current_time;
 var note_to_destroy = noone;
-var message = "NOTES I HAVE => {";
+
 for (var i = 0; i < ds_list_size(collision_list); i++) {
 	var ith_note_timestamp = ds_list_find_value(collision_list, i).note_timestamp;
 	var ith_note_inst_id = ds_list_find_value(collision_list, i).note_inst_id;
-	message += string(ith_note_inst_id) + ", ";
+	
+	// Keep track of hits
+	if(ds_map_exists(num_hits_map, ith_note_inst_id)) {
+		ds_map_replace(num_hits_map, 
+		               ith_note_inst_id, 
+					   ds_map_find_value(num_hits_map, ith_note_inst_id) + 1
+					  );
+	} else {
+		ds_map_set(num_hits_map, ith_note_inst_id, 1);
+	}
 	
 	if(ith_note_timestamp < current_time) {
 		earliest_time = ith_note_timestamp;
 		note_to_destroy = ith_note_inst_id;
 	}
 }
-show_debug_message(message + "}");
 
 // Only destroy the note that was generated the earliest.
 if(note_to_destroy != noone) {
-	show_debug_message("Attempting to hit: " + string(note_to_destroy));
-	note_to_destroy.hit();
+	if(ds_map_exists(num_hits_map, note_to_destroy)) {
+		note_to_destroy.hit(ds_map_find_value(num_hits_map, note_to_destroy));
+	}
+	else {
+		show_debug_message("ERROR: Note to destroy wasn't hit?!");
+	}
 }
 
+// Clean up!
 ds_list_clear(collision_list);
+ds_map_clear(num_hits_map);

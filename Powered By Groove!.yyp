@@ -29,6 +29,7 @@
     {"$GMFolder":"","%Name":"Backgrounds","folderPath":"folders/Sprites/Backgrounds.yy","name":"Backgrounds","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"UI Elements","folderPath":"folders/Sprites/UI Elements.yy","name":"UI Elements","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Arrows","folderPath":"folders/Sprites/UI Elements/Arrows.yy","name":"Arrows","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Characters","folderPath":"folders/Sprites/UI Elements/Characters.yy","name":"Characters","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Messages","folderPath":"folders/Sprites/UI Elements/Messages.yy","name":"Messages","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Misc","folderPath":"folders/Sprites/UI Elements/Misc.yy","name":"Misc","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Tile Sets","folderPath":"folders/Tile Sets.yy","name":"Tile Sets","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -42,6 +43,7 @@
   },
   "name":"Powered By Groove!",
   "resources":[
+    {"id":{"name":"big_boss_obj","path":"objects/big_boss_obj/big_boss_obj.yy",},},
     {"id":{"name":"guide_note_collision_controller","path":"objects/guide_note_collision_controller/guide_note_collision_controller.yy",},},
     {"id":{"name":"guide_note_collision_line","path":"objects/guide_note_collision_line/guide_note_collision_line.yy",},},
     {"id":{"name":"guide_note","path":"objects/guide_note/guide_note.yy",},},
@@ -57,6 +59,7 @@
     {"id":{"name":"activated_guide_left","path":"sprites/activated_guide_left/activated_guide_left.yy",},},
     {"id":{"name":"activated_guide_right","path":"sprites/activated_guide_right/activated_guide_right.yy",},},
     {"id":{"name":"activated_guide_up","path":"sprites/activated_guide_up/activated_guide_up.yy",},},
+    {"id":{"name":"big_boss","path":"sprites/big_boss/big_boss.yy",},},
     {"id":{"name":"collision_line_blue","path":"sprites/collision_line_blue/collision_line_blue.yy",},},
     {"id":{"name":"collision_line_green","path":"sprites/collision_line_green/collision_line_green.yy",},},
     {"id":{"name":"collision_line_red","path":"sprites/collision_line_red/collision_line_red.yy",},},
