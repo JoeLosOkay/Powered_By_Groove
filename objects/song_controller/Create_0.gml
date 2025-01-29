@@ -1,7 +1,5 @@
 /// @description Set up the song controller.
 
-
-
 random_set_seed(current_time); // Set the seed for the game
 
 // TODO  Control objects should probably be created programmatically along 
