@@ -3,6 +3,9 @@ note_timestamp = current_time;
 trail_sprite_index = noone;
 trail_sprite_angle = 0;
 
+	//layer = global.NOTES_LAYER_DEPTH;
+
+show_debug_message("NOTE DIRECTION IS: " + string(note_direction));
 switch(note_direction) {
 	case NoteState.UP:
 	  sprite_index = up_arrow;

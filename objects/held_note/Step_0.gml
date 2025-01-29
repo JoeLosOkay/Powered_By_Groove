@@ -4,7 +4,4 @@ if(!terminating) {
 }
 
 
-for(var i = 0; i < note_length; i++) {
-	draw_sprite(trail_sprite_index, 0, x, y+1);
-}
 

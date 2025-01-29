@@ -37,7 +37,6 @@ if(current_time - last_time >= interval) {
       }
     );
 	*/
-	show_debug_message("Creating, " + string(note_direction) + ", " + string(drop_speed) + ", " + string(random_note_length));
 	var new_arrow = instance_create_depth(note_spawn_location_x, 0, global.NOTES_LAYER_DEPTH, held_note,
 	  {
 		  note_direction: note_direction,
