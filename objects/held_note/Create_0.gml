@@ -29,13 +29,13 @@ switch(note_direction) {
 	  break;
 	case NoteState.P_UP:
 	  sprite_index = powered_arrow;
-	  image_angle = 0;
+	  image_angle = 270;
 	  trail_sprite_index = powered_up_down_arrow_hold_effects;
 	  trail_sprite_angle = 0;
 	  break;
     case NoteState.P_DOWN:
 	  sprite_index = powered_arrow;
-	  image_angle = 270;
+	  image_angle = 90;
 	  trail_sprite_index = powered_up_down_arrow_hold_effects;
 	  trail_sprite_angle = 180;
 	  break;

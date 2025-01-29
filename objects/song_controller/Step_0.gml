@@ -24,7 +24,7 @@ if(current_time - last_time >= interval) {
 		  break;
 	}
 	
-	if(irandom(9) == 0) {
+	if(irandom(2) == 0) { // TODO, make this less common
 		note_direction += 4; // Power up the note
 	}
 	var drop_speed = 2;
