@@ -16,3 +16,17 @@ if(animation_direction == "reverse") {
 		animation_direction = "stopped";
 	}
 }
+
+if(current_crazy_mode_hits >= CRAZY_MODE_NUM_HITS) {
+	sprite_index = big_boss_charged;
+}
+if(current_time - current_crazy_mode_time >= CRAZY_MODE_SPEED) {
+	show_debug_message("Hitting this??");
+	if(current_crazy_mode_hits < CRAZY_MODE_NUM_HITS) {
+		sprite_index = big_boss;
+	}
+	
+	current_crazy_mode_time = current_time;;
+	current_crazy_mode_hits = 0;
+}
+show_debug_message("Current_crazy_mode_time = " + string(current_crazy_mode_time));
