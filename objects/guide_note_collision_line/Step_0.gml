@@ -46,7 +46,7 @@ if(!held_press_activated) {
 //       it'd be very confusing
 
 // Check if a held_note is overlapping the guide line
-var overlapping_held_note_head = instance_place(x, y, held_note_head);
+var overlapping_held_note_head = instance_place(x, y, held_note);
 if(overlapping_held_note_head != noone) {
 	
 	// Held note was missed :(
@@ -58,16 +58,6 @@ if(overlapping_held_note_head != noone) {
 		currently_held_note_ref = overlapping_held_note_head;
 		currently_held_note_ref.hit();
 	}
-}
-
-var overlapping_held_note_tail = instance_place(x, y, held_note_tail);
-if(overlapping_held_note_tail != noone) {
-	
-	// If this is the miss line tell tail to destroy itself along with it's head
-	if(miss_line) {
-		instance_destroy(overlapping_held_note_tail);
-	}
-	
 }
 
 // Deactivate press and test if player is still holding down note

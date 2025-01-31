@@ -4,39 +4,52 @@ falling_note_color = #FFFFFF;
 terminating = false;
 hold_duration = 0;
 missed = false;
+trail_start_points = [];
 
 switch(note_direction) {
 	case NoteState.UP:
-	  sprite_index = held_up_arrow_head;
+	  sprite_index = up_arrow_single;
 	  falling_note_color = global.UP_NOTE_FALLING_COLOR;
+	  trail_start_points = global.UP_ARROW_TRAIL_Y_START_POINTS;
 	  break;
 	case NoteState.DOWN:
-	  sprite_index = held_down_arrow_head;
+	  sprite_index = down_arrow_single;
 	  falling_note_color = global.DOWN_NOTE_FALLING_COLOR;
+	  trail_start_points = global.DOWN_ARROW_TRAIL_Y_START_POINTS;
 	  break;
 	case NoteState.LEFT:
-	  sprite_index = held_left_arrow_head;
+	  sprite_index = left_arrow_single;
 	  falling_note_color = global.LEFT_NOTE_FALLING_COLOR;
+	  trail_start_points = global.LEFT_ARROW_TRAIL_Y_START_POINTS;
 	  break;
     case NoteState.RIGHT:
-	  sprite_index = held_right_arrow_head;
+	  sprite_index = right_arrow_single;
 	  falling_note_color = global.RIGHT_NOTE_FALLING_COLOR;
+	  trail_start_points = global.RIGHT_ARROW_TRAIL_Y_START_POINTS;
 	  break;
 	case NoteState.P_UP:
-	  sprite_index = held_powered_up_arrow_head;
+	  sprite_index = powered_arrow_single;
+	  image_angle = 90;
 	  falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  trail_start_points = global.UP_ARROW_TRAIL_Y_START_POINTS;
 	  break;
     case NoteState.P_DOWN:
-	  sprite_index = held_powered_down_arrow_head;
+	  sprite_index = powered_arrow_single;
+	  image_angle = 270;
 	  falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  trail_start_points = global.DOWN_ARROW_TRAIL_Y_START_POINTS;
 	  break;
 	case NoteState.P_LEFT:
-	  sprite_index = held_powered_left_arrow_head;
+	  sprite_index = powered_arrow_single;
+	  image_angle = 180;
 	  falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  trail_start_points = global.LEFT_ARROW_TRAIL_Y_START_POINTS;
 	  break;
 	case NoteState.P_RIGHT:
-	  sprite_index = held_powered_right_arrow_head;
+	  sprite_index = powered_arrow_single;
+	  image_angle = 0;
 	  falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  trail_start_points = global.RIGHT_ARROW_TRAIL_Y_START_POINTS;
 	  break;
 	default:
 	  show_debug_message("ERROR: NoteState not set for note");
@@ -53,9 +66,6 @@ function hit() {
 			image_index = 2;
 		} else if (image_index == 2) {
 			image_index = 1;
-		}
-		if(held_note_tail_ref != noone) {
-		  held_note_tail_ref.holding();
 		}
 	}
 }
@@ -132,6 +142,5 @@ function miss() {
 }
 
 function terminate() {
-	held_note_tail_ref = noone;
 	terminating = true;
 }
