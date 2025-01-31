@@ -4,7 +4,7 @@
 if(current_time - last_time >= interval) {
 	var note_direction = irandom_range(1, 4);
 	var note_spawn_location_x = 0;
-	var random_note_length = irandom_range(32, 80);
+	var random_note_length = irandom_range(200, 200); // Min 32
 	
 	switch(note_direction) {
 		case NoteState.LEFT:

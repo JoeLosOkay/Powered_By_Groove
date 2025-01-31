@@ -1,20 +1,20 @@
 /// @description Render falling head note
-if(hold_duration == 0) {
+if(!being_held) {
 	y += drop_speed;
 	if(missed) {
-		// Tell tail to disable and destroy when it reaches miss_line
+		// Tell tail to disable and destroy us both when it reaches miss_line
 		if(held_note_tail_ref != noone) {
 			held_note_tail_ref.miss(id);
 		}
 		image_index = 3;
-		falling_note_color = global.HELD_NOTE_MISS_COLOR;
-		//instance_destroy();
+		current_falling_note_color = global.HELD_NOTE_MISS_COLOR;
 	}
-} else {
+	// Your tail has just hit the miss line. Time to die.
 	if(terminating) {
-		// Check if hit or missed and perform appropriate animation
 		instance_destroy();
 	}
+} else {
+	
 }
 
 

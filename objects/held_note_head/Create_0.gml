@@ -1,42 +1,66 @@
 /// @description Initialize held note head
 note_timestamp = current_time; // timestamps might not work with held notes...
-falling_note_color = #FFFFFF;
+current_falling_note_color = #FFFFFF;
+falling_note_hit_color_1 = #FFFFFF;
+falling_note_hit_color_2 = #FFFFFF;
 terminating = false;
+being_held = false;
 hold_duration = 0;
 missed = false;
+animation_index = 0;
+animation_timer = 0;
 
 switch(note_direction) {
 	case NoteState.UP:
-	  sprite_index = held_up_arrow_head;
-	  falling_note_color = global.UP_NOTE_FALLING_COLOR;
+	  sprite_index = up_arrow_single;
+	  current_falling_note_color = global.UP_NOTE_FALLING_COLOR;
+	  falling_note_hit_color_1 = global.UP_NOTE_HOLDING_COLOR_1;
+	  falling_note_hit_color_2 = global.UP_NOTE_HOLDING_COLOR_2;
 	  break;
 	case NoteState.DOWN:
-	  sprite_index = held_down_arrow_head;
-	  falling_note_color = global.DOWN_NOTE_FALLING_COLOR;
+	  sprite_index = down_arrow_single;
+	  current_falling_note_color = global.DOWN_NOTE_FALLING_COLOR;
+	  falling_note_hit_color_1 = global.DOWN_NOTE_HOLDING_COLOR_1;
+	  falling_note_hit_color_2 = global.DOWN_NOTE_HOLDING_COLOR_2;
 	  break;
 	case NoteState.LEFT:
-	  sprite_index = held_left_arrow_head;
-	  falling_note_color = global.LEFT_NOTE_FALLING_COLOR;
+	  sprite_index = left_arrow_single;
+	  current_falling_note_color = global.LEFT_NOTE_FALLING_COLOR;
+	  falling_note_hit_color_1 = global.LEFT_NOTE_HOLDING_COLOR_1;
+	  falling_note_hit_color_2 = global.LEFT_NOTE_HOLDING_COLOR_2;
 	  break;
     case NoteState.RIGHT:
-	  sprite_index = held_right_arrow_head;
-	  falling_note_color = global.RIGHT_NOTE_FALLING_COLOR;
+	  sprite_index = right_arrow_single;
+	  current_falling_note_color = global.RIGHT_NOTE_FALLING_COLOR;
+	  falling_note_hit_color_1 = global.RIGHT_NOTE_HOLDING_COLOR_1;
+	  falling_note_hit_color_2 = global.RIGHT_NOTE_HOLDING_COLOR_2;
 	  break;
 	case NoteState.P_UP:
-	  sprite_index = held_powered_up_arrow_head;
-	  falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  sprite_index = powered_arrow_single;
+	  image_angle = 90;
+	  current_falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  falling_note_hit_color_1 = global.POWERED_NOTE_HOLDING_COLOR_1;
+	  falling_note_hit_color_2 = global.POWERED_NOTE_HOLDING_COLOR_2;
 	  break;
     case NoteState.P_DOWN:
-	  sprite_index = held_powered_down_arrow_head;
-	  falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  sprite_index = powered_arrow_single;
+	  image_angle = 270;
+	  current_falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  falling_note_hit_color_1 = global.POWERED_NOTE_HOLDING_COLOR_1;
+	  falling_note_hit_color_2 = global.POWERED_NOTE_HOLDING_COLOR_2;
 	  break;
 	case NoteState.P_LEFT:
-	  sprite_index = held_powered_left_arrow_head;
-	  falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  sprite_index = powered_arrow_single;
+	  image_angle = 180;
+	  current_falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  falling_note_hit_color_1 = global.POWERED_NOTE_HOLDING_COLOR_1;
+	  falling_note_hit_color_2 = global.POWERED_NOTE_HOLDING_COLOR_2;
 	  break;
 	case NoteState.P_RIGHT:
-	  sprite_index = held_powered_right_arrow_head;
-	  falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  sprite_index = powered_arrow_single;
+	  current_falling_note_color = global.POWERED_NOTE_FALLING_COLOR;
+	  falling_note_hit_color_1 = global.POWERED_NOTE_HOLDING_COLOR_1;
+	  falling_note_hit_color_2 = global.POWERED_NOTE_HOLDING_COLOR_2;
 	  break;
 	default:
 	  show_debug_message("ERROR: NoteState not set for note");
@@ -44,19 +68,15 @@ switch(note_direction) {
 }
 
 // Function that the collision line can call to let the note know it's been hit
-function hit() {
-	if(!terminating) { // Only run this function and count hits once
+function hold() {
+	being_held = true;
+	
+	if(held_note_tail_ref != noone) {
+		held_note_tail_ref.hold();
+	}
+	
+	if(!terminating) {
 		hold_duration += 1;
-		if (image_index == 0) {
-			image_index = 1;
-		} else if (image_index == 1) {
-			image_index = 2;
-		} else if (image_index == 2) {
-			image_index = 1;
-		}
-		if(held_note_tail_ref != noone) {
-		  held_note_tail_ref.holding();
-		}
 	}
 }
 
