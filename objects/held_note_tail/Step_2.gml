@@ -31,8 +31,3 @@ if(num_hits > 0) {
 		  break;
 	}
 }
-
-if(missed) {
-	terminating = true;
-	instance_destroy();
-}

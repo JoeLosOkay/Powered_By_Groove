@@ -1,4 +1,4 @@
-/// @description Check collisions
+/// @description Check for single note collisions
 if(note_direction == NoteState.LEFT) {
-	activated = true;
+	single_press_activated = true;
 }

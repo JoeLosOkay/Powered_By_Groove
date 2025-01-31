@@ -20,8 +20,8 @@ global.UI_LAYER_DEPTH = 3;
 // The chance that a powered note appears. 1/X, where 'X' is the chance.
 global.POWERED_NOTE_CHANCE = 10;
 
-// Base point values for notes hit. These correspond to the number of
-// collision lines hit.
+// Base point values for SINGLE notes hit. These correspond to the number of
+// collision lines hit within the guide_note.
 global.BASE_ONE_COLLISION_POINTS = 1;
 global.BASE_TWO_COLLISION_POINTS = 1;
 global.BASE_THREE_COLLISION_POINTS = 2;

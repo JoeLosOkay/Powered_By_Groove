@@ -33,3 +33,13 @@ function score_calculator(num_hits) {
 	spawn_track_message(num_hits);
 	add_to_total_power(power_points);
 }
+
+// note_length is the length of the held note. 
+// note_hit_length is how long the note was actually held for.
+function held_note_score_calculator(note_length, note_hit_length) {
+	var hit_ratio = note_hit_length / note_length;
+	var power_points = note_length * hit_ratio * global.current_multiplier;
+	
+	spawn_track_message_held(hit_ratio);
+	add_to_total_power(power_points);
+}
