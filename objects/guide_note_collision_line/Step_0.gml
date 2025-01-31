@@ -56,7 +56,7 @@ if(overlapping_held_note_head != noone) {
 	
 	if(held_press_activated) {
 		currently_held_note_ref = overlapping_held_note_head;
-		currently_held_note_ref.hold();
+		currently_held_note_ref.hit();
 	}
 }
 
