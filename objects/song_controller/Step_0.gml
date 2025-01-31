@@ -23,12 +23,10 @@ if(current_time - last_time >= interval) {
 		  show_debug_message("ERROR: Note direction broke!");
 		  break;
 	}
-	// TODO Reintroduce powered notes
-	/*
+
 	if(irandom(2) == 0) { // TODO, make this less common
 		note_direction += 4; // Power up the note
 	}
-	*/
 	var drop_speed = 2;
 	
 	// Test dropping singles
