@@ -33,9 +33,8 @@ ds_list_clear(single_notes_list);
 
 if(!held_press_activated) {
 	if(currently_held_note_ref != noone) {
-		show_debug_message("Released held note");
-		// Check if player has hit tail or not. Act accordingly
-		// var currently_held_note_tail = instance_place(x, y, held_note_tail);
+		currently_held_note_ref.release();
+		currently_held_note_ref = noone;
 	}
 }
 
@@ -46,17 +45,17 @@ if(!held_press_activated) {
 //       it'd be very confusing
 
 // Check if a held_note is overlapping the guide line
-var overlapping_held_note_head = instance_place(x, y, held_note);
-if(overlapping_held_note_head != noone) {
+var overlapping_held_note = instance_place(x, y, held_note);
+if(overlapping_held_note != noone) {
 	
 	// Held note was missed :(
 	if (miss_line) {
-		overlapping_held_note_head.miss();
+		overlapping_held_note.miss();
 	}
 	
 	if(held_press_activated) {
-		currently_held_note_ref = overlapping_held_note_head;
-		currently_held_note_ref.hit();
+		currently_held_note_ref = overlapping_held_note;
+		currently_held_note_ref.hold();
 	}
 }
 

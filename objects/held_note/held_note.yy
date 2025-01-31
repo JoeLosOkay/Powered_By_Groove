@@ -34,6 +34,7 @@
     {"$GMObjectProperty":"v1","%Name":"drop_speed","filters":[],"listItems":[],"multiselect":false,"name":"drop_speed","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"powered","filters":[],"listItems":[],"multiselect":false,"name":"powered","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"note_length","filters":[],"listItems":[],"multiselect":false,"name":"note_length","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
+    {"$GMObjectProperty":"v1","%Name":"animation_speed","filters":[],"listItems":[],"multiselect":false,"name":"animation_speed","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"5","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

@@ -269,4 +269,4 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 
 // Set up timer
 last_time = current_time;
-interval = 2000;
+interval = 1000;

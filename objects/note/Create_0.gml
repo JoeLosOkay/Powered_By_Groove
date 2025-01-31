@@ -36,7 +36,6 @@ switch(note_direction) {
 
 // Function that the collision line can call to let the note know it's been hit
 function hit(hits) {
-	show_debug_message(string(id) + " HIHIHIHIT");
 	if(!terminating) { // Only run this function and count hits once
 		num_hits = hits;
 	}

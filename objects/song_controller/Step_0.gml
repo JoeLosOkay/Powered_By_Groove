@@ -4,6 +4,7 @@
 if(current_time - last_time >= interval) {
 	var note_direction = irandom_range(1, 4);
 	var note_spawn_location_x = 0;
+	var spawn_a_held_note = irandom(1);
 	var random_note_length = irandom_range(32, 80);
 	
 	switch(note_direction) {
@@ -30,24 +31,18 @@ if(current_time - last_time >= interval) {
 	var drop_speed = 2;
 	
 	// Test dropping singles
-	/*
-	var new_arrow = instance_create_depth(note_spawn_location_x, 0, global.NOTES_LAYER_DEPTH, note, 
-      {
-	    note_direction: note_direction,
-	    drop_speed: drop_speed
-      }
-    );
-	*/
-	/*
-	var new_arrow = instance_create_depth(note_spawn_location_x, 0, global.GUIDES_LAYER_DEPTH, held_note_head,
-	  {
-		  note_direction: note_direction,
-		  drop_speed: drop_speed,
-		  note_length: random_note_length
-	  }
-	);
-	*/
-	spawn_held_note(note_spawn_location_x, random_note_length, note_direction, drop_speed);
+	if(spawn_a_held_note = 1) {
+		var new_arrow = instance_create_depth(note_spawn_location_x, 0, global.NOTES_LAYER_DEPTH, note, 
+		{
+			note_direction: note_direction,
+			drop_speed: drop_speed
+		});
+	} else {
+		spawn_held_note(note_spawn_location_x, random_note_length, note_direction, drop_speed);
+	}
+
+	
+	
 	
 	last_time = current_time;
 }
