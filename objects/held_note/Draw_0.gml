@@ -6,7 +6,7 @@ draw_self();
 // held note. Otherwise, notes don't align with the music.
 
 // Animate being hit
-if(being_held) {
+if(being_held && !terminating) {
 	if(current_animation_time >= animation_speed) {
 		if(hold_trail_animation_index = 1) {
 			falling_note_color = falling_note_holding_color2;
@@ -26,5 +26,3 @@ draw_set_color(falling_note_color);
 for(var i = 0; i < array_length(trail_start_points); i++) {
 	draw_line(x-16+i, y-16+trail_start_points[i], x-16+i, y-16+trail_start_points[i]-trail_length);
 }
-
-//image_index += 1;

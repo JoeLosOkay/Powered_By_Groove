@@ -88,6 +88,7 @@ function hold() {
 function release() {
 	if(!terminating) {
 		terminating = true;
+		falling_note_color = global.HELD_NOTE_MISS_COLOR;
 		switch(note_direction) {
 			case NoteState.UP:
 			sprite_index = up_arrow_hit;
@@ -103,12 +104,15 @@ function release() {
 			  break;
 			case NoteState.P_UP:
 			  sprite_index = powered_arrow_hit;
+			  image_angle = 90;
 			  break;
 		    case NoteState.P_DOWN:
 			  sprite_index = powered_arrow_hit;
+			  image_angle = 270;
 			  break;
 			case NoteState.P_LEFT:
 			  sprite_index = powered_arrow_hit;
+			  image_angle = 180;
 			  break;
 			case NoteState.P_RIGHT:
 			  sprite_index = powered_arrow_hit;
