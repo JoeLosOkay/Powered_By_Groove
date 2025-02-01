@@ -1,6 +1,7 @@
 /// @description Keep track of time and spawn notes
 
-song_timer_ms += delta_time;
+song_timer_ms += global.ACTUAL_DELTA;
+//show_debug_message(string(song_timer_ms) + " " + string(global.ACTUAL_DELTA / 1000) + " " + string(global.ACTUAL_DELTA));
 
 // Check the nth note in the song.
 if(array_length(current_song_data) != 0 && current_song_note < array_length(current_song_data)) {
@@ -25,8 +26,7 @@ if(array_length(current_song_data) != 0 && current_song_note < array_length(curr
 				show_debug_message("ERROR: Cannot spawn held note with NEGATIVE note length!");
 			}
 			
-			//song_timer_ms -= note_data.s;
-			song_timer_ms = 0;
+			song_timer_ms -= note_data.s;
 			current_song_note += 1;
 		}
 	}

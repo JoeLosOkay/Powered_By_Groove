@@ -47,12 +47,12 @@ function direction_to_x(note_state) {
 }
 
 // Guide Note and Guide Note Collision Locations
-global.COLLISION_1_LOCATION_Y = 145;
+global.COLLISION_1_LOCATION_Y = 144;
 global.COLLISION_2_LOCATION_Y = 151;
 global.COLLISION_3_LOCATION_Y = 157;
 global.COLLISION_4_LOCATION_Y = 162;
 global.COLLISION_5_LOCATION_Y = 168;
-global.COLLISION_6_LOCATION_Y = 174;
+global.COLLISION_6_LOCATION_Y = 173;
 global.MISS_LOCATION_Y = 205
 global.GUIDE_NOTE_SPAWN_LOCATION_Y = 160;
 

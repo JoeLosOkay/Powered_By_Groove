@@ -42,19 +42,23 @@ function spawn_track_message (num_hits) {
 // Spawns a track message for held notes based on a scoring system
 function spawn_track_message_held(held_ratio) {
 	var message_sprite;
+	show_debug_message("Held Ratio: " + string(held_ratio));
 	
-	if(held_ratio <= 0) {
+	if(held_ratio <= 0 + EPSILON) {
 		message_sprite = miss_message;
-	} else if(held_ratio > 0 && held_ratio <= 0.5) {
+	} else if(held_ratio > 0 - EPSILON && held_ratio <= 0.5 + EPSILON) {
 		message_sprite = meh_message;
-	} else if (held_ratio > 0.5 && held_ratio <= 0.7) {
+	} else if (held_ratio > 0.5 - EPSILON && held_ratio <= 0.7 + EPSILON) {
 		message_sprite = good_message;
-	} else if (held_ratio > 0.7 && held_ratio <= 0.9) {
+	} else if (held_ratio > 0.7 - EPSILON && held_ratio <= 0.9 + EPSILON) {
 		message_sprite = cool_message;
-	} else if (held_ratio > 0.9 && held_ratio <= 0.99) {
+	} else if (held_ratio > 0.9 - EPSILON && held_ratio <= 0.99 + EPSILON) {
 		message_sprite = wow_message;
-	} else if (held_ratio >= 1) {
+	} else if (held_ratio >= 1 - EPSILON) {
 		message_sprite = perfect_message;
+	} else {
+		message_sprite = cool_message; // If you manage to get past these epsilons I'll through you a bone :)
+		show_debug_message("LUCKY");
 	}
 	
 	var spawn_x = irandom_range(1, 90);

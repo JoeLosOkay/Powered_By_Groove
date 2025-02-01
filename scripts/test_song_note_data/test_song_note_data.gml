@@ -1,11 +1,18 @@
-drop_speed = 4; // 40 frames to get to down 160 px
+drop_speed = 2; // 2px per frame, should take 80 frames to get to down 160 px where the guide note is
 
 // Note lengths in ms
-sn = 31.25; // Sixteenth note
-en = 62.5; // Eighth note
-qn = 125; // Quarter note
-hn = 250; // Half note
-wn = 500; // Whole note
+sn = 125; // Sixteenth note
+en = 250; // Eighth note
+qn = 500; // Quarter note
+hn = 1000; // Half note
+wn = 2000; // Whole note
+
+// Held note lengths in pixels
+sn_px = 15;
+en_px = 30;
+qn_px = 60;
+hn_px = 120;
+wn_px = 240;
 
 up = NoteState.UP;
 down = NoteState.DOWN;
@@ -16,8 +23,7 @@ global.test_song_note_data =
 [
     // The first note should hit the collision line at 2000 ms (2 seconds)
 	// 2000ms is when the song's beat starts
-	
-    {e: 0, s: 1960, d: down, l: 0}, // First note
+    {e: 0, s: 766.66666, d: down, l: 0}, // First note
 	{e: 0, s: qn, d: up, l: 0},
 	{e: 0, s: qn, d: left, l: 0},
 	{e: 0, s: qn, d: right, l: 0},
@@ -25,7 +31,7 @@ global.test_song_note_data =
 	{e: 0, s: qn, d: left, l: 0},
 	{e: 0, s: hn, d: right, l: 0},
 	// whole note test
-	{e: 0, s: hn, d: up, l: wn},
+	{e: 0, s: hn, d: up, l: wn_px},
 	// eigth note tests
 	{e: 0, s: wn, d: left, l: 0},
 	{e: 0, s: en, d: up, l: 0},

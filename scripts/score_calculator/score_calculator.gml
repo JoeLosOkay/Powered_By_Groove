@@ -39,7 +39,7 @@ function score_calculator(num_hits) {
 function held_note_score_calculator(note_length, note_hit_length) {
 	show_debug_message("note_length: " + string(note_length) + ", note_hit_length: " + string(note_hit_length));
 	var hit_ratio = note_hit_length / note_length;
-	var power_points = note_length * hit_ratio * global.current_multiplier;
+	var power_points = ceil(note_length * hit_ratio * global.current_multiplier);
 	
 	spawn_track_message_held(hit_ratio);
 	add_to_total_power(power_points);

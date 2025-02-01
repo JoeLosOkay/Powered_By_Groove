@@ -10,4 +10,4 @@ var currently_playing_song = instance_create_depth(17, 160, global.GUIDES_LAYER_
 );
 */
 
-play_song(test_beat_1, global.test_song_note_data, 4);
+play_song(test_beat_1, global.test_song_note_data, 2);
