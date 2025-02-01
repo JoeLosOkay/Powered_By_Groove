@@ -1,6 +1,41 @@
 /// @description Keep track of time and spawn notes
 
+song_timer_ms += delta_time;
+
+// Check the nth note in the song.
+if(array_length(current_song_data) != 0 && current_song_note < array_length(current_song_data)) {
+	var note_data = current_song_data[current_song_note];
+	
+	// The song has ended
+	if(note_data.e == 1) {
+		end_song();
+	} else {
+		// spawn note
+		if(song_timer_ms >= note_data.s) {
+			// single note
+			if(note_data.l == 0) {
+				spawn_note(note_data.d, direction_to_x(note_data.d), current_song_speed);
+			}
+			// held note
+			else if(note_data.l > 0) {
+				spawn_held_note(note_data.d, direction_to_x(note_data.d), current_song_speed, note_data.l);
+			} 
+			// uh oh
+			else {
+				show_debug_message("ERROR: Cannot spawn held note with NEGATIVE note length!");
+			}
+			
+			//song_timer_ms -= note_data.s;
+			song_timer_ms = 0;
+			current_song_note += 1;
+		}
+	}
+}
+
+
+/* OLD STEP EVENT FOR TESTING NOTE COLLISIONS!!! */
 // Spawn a random note every 2 seconds
+/* 
 if(current_time - last_time >= interval) {
 	var note_direction = irandom_range(1, 4);
 	var note_spawn_location_x = 0;
@@ -46,3 +81,4 @@ if(current_time - last_time >= interval) {
 	
 	last_time = current_time;
 }
+*/

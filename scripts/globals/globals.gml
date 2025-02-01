@@ -12,9 +12,57 @@ enum NoteState {
 	P_RIGHT,
 }
 
+// Note Spawn Locations
+global.LEFT_NOTE_SPAWN_LOCATION_X = 17;
+global.RIGHT_NOTE_SPAWN_LOCATION_X = 122;
+global.UP_NOTE_SPAWN_LOCATION_X = 85;
+global.DOWN_NOTE_SPAWN_LOCATION_X = 53;
+
+// Helper to turn NoteState into it's x value
+function direction_to_x(note_state) {
+	switch(note_state) {
+		case NoteState.NONE:
+			show_debug_message("ERROR: Spawning note with direction of none!");
+			return -1;
+		case NoteState.UP:
+			return global.UP_NOTE_SPAWN_LOCATION_X;
+		case NoteState.DOWN:
+			return global.DOWN_NOTE_SPAWN_LOCATION_X;
+		case NoteState.LEFT:
+			return global.LEFT_NOTE_SPAWN_LOCATION_X;
+		case NoteState.RIGHT:
+			return global.RIGHT_NOTE_SPAWN_LOCATION_X;
+		case NoteState.P_UP:
+			return global.UP_NOTE_SPAWN_LOCATION_X;
+		case NoteState.P_DOWN:
+			return global.DOWN_NOTE_SPAWN_LOCATION_X;
+		case NoteState.P_LEFT:
+			return global.LEFT_NOTE_SPAWN_LOCATION_X;
+		case NoteState.P_RIGHT:
+			return global.RIGHT_NOTE_SPAWN_LOCATION_X;
+		default:
+			show_debug_message("ERROR: Spawning note with invalid NoteState!");
+			return -1;
+	}
+}
+
+// Guide Note and Guide Note Collision Locations
+global.COLLISION_1_LOCATION_Y = 145;
+global.COLLISION_2_LOCATION_Y = 151;
+global.COLLISION_3_LOCATION_Y = 157;
+global.COLLISION_4_LOCATION_Y = 162;
+global.COLLISION_5_LOCATION_Y = 168;
+global.COLLISION_6_LOCATION_Y = 174;
+global.MISS_LOCATION_Y = 205
+global.GUIDE_NOTE_SPAWN_LOCATION_Y = 160;
+
+// Pane locations
+global.DANCE_MODE_PANE_X = 200;
+global.DANCE_MODE_PANE_Y = 100;
+
 // Layer Names
-global.GUIDES_LAYER_DEPTH = 2;
 global.NOTES_LAYER_DEPTH = 1;
+global.GUIDES_LAYER_DEPTH = 2;
 global.UI_LAYER_DEPTH = 3;
 
 // The chance that a powered note appears. 1/X, where 'X' is the chance.

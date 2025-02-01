@@ -1,88 +1,86 @@
 /// @description Set up the song controller.
 
 random_set_seed(current_time); // Set the seed for the game
+dance_mode_pane = noone;
+current_song_data = [];
+current_song_note = 0;
+song_timer_ms = 0;
+current_song_speed = 0;
 
-// TODO  Control objects should probably be created programmatically along 
-//       with the global_stuff object for more control over initialization.
+{ // Create Guide Notes
+	left_guide_arrow_inst = instance_create_depth(global.LEFT_NOTE_SPAWN_LOCATION_X, global.GUIDE_NOTE_SPAWN_LOCATION_Y, global.GUIDES_LAYER_DEPTH, guide_note, 
+	  {
+		  note_direction: NoteState.LEFT,
+	  }
+	);
 
-// TODO  I probably don't need to be using var for all of these instantiations...
-//       It may cause problems in the future...
+	right_guide_arrow_inst = instance_create_depth(global.RIGHT_NOTE_SPAWN_LOCATION_X, global.GUIDE_NOTE_SPAWN_LOCATION_Y, global.GUIDES_LAYER_DEPTH, guide_note, 
+	  {
+		  note_direction: NoteState.RIGHT,
+	  }
+	);
 
-// TODO  Globals for all of the magic numbers in this horrendous create event.
+	down_guide_arrow_inst = instance_create_depth(global.DOWN_NOTE_SPAWN_LOCATION_X, global.GUIDE_NOTE_SPAWN_LOCATION_Y, global.GUIDES_LAYER_DEPTH, guide_note, 
+	  {
+		  note_direction: NoteState.DOWN,
+	  }
+	);
 
-// Create Guide Notes
-var left_guide_arrow_inst = instance_create_depth(17, 160, global.GUIDES_LAYER_DEPTH, guide_note, 
-  {
-	  note_direction: NoteState.LEFT,
-  }
-);
-
-var right_guide_arrow_inst = instance_create_depth(122, 160, global.GUIDES_LAYER_DEPTH, guide_note, 
-  {
-	  note_direction: NoteState.RIGHT,
-  }
-);
-
-var down_guide_arrow_inst = instance_create_depth(53, 160, global.GUIDES_LAYER_DEPTH, guide_note, 
-  {
-	  note_direction: NoteState.DOWN,
-  }
-);
-
-var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEPTH, guide_note, 
-  {
-	  note_direction: NoteState.UP,
-  }
-);
+	up_guide_arrow_inst = instance_create_depth(global.UP_NOTE_SPAWN_LOCATION_X, global.GUIDE_NOTE_SPAWN_LOCATION_Y, global.GUIDES_LAYER_DEPTH, guide_note, 
+	  {
+		  note_direction: NoteState.UP,
+	  }
+	);
+}
 
 // Create guide note collision lines.
 //
 // Each guide note will use six collision lines to determine how accurately
-// the player hits each note. 
-
+// the player hits each note. The guide note collision controller helps to
+// determine which note should be hit when there are multiple overlapping.
 { // LEFT GUIDE ARROW COLLISION LINES
-	var left_guide_collision_controller = instance_create_depth(17, 145, global.GUIDES_LAYER_DEPTH, 
+	left_guide_collision_controller = instance_create_depth(0, 0, global.GUIDES_LAYER_DEPTH, 
 	  guide_note_collision_controller,
 	  {
 		  note_direction: NoteState.LEFT
 	  }
 	);
-	var left_guide_collision_line_0 = instance_create_depth(17, 145, global.GUIDES_LAYER_DEPTH, 
+	left_guide_collision_line_0 = instance_create_depth(global.LEFT_NOTE_SPAWN_LOCATION_X, global.COLLISION_1_LOCATION_Y, global.GUIDES_LAYER_DEPTH, 
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.LEFT,
 		  parent_collision_controller: left_guide_collision_controller
 	  }
 	);
-	var left_guide_collision_line_1 = instance_create_depth(17, 151, global.GUIDES_LAYER_DEPTH,
+	left_guide_collision_line_1 = instance_create_depth(global.LEFT_NOTE_SPAWN_LOCATION_X, global.COLLISION_2_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.LEFT,
 		  parent_collision_controller: left_guide_collision_controller
 	  }
 	);
-	var left_guide_collision_line_2 = instance_create_depth(17, 157, global.GUIDES_LAYER_DEPTH,
+	left_guide_collision_line_2 = instance_create_depth(global.LEFT_NOTE_SPAWN_LOCATION_X, global.COLLISION_3_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.LEFT,
 		  parent_collision_controller: left_guide_collision_controller
 	  }
 	);
-	var left_guide_collision_line_3 = instance_create_depth(17, 162, global.GUIDES_LAYER_DEPTH,
+	left_guide_collision_line_3 = instance_create_depth(global.LEFT_NOTE_SPAWN_LOCATION_X, global.COLLISION_4_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.LEFT,
 		  parent_collision_controller: left_guide_collision_controller
 	  }
 	);
-	var left_guide_collision_line_4 = instance_create_depth(17, 168, global.GUIDES_LAYER_DEPTH,
+	left_guide_collision_line_4 = instance_create_depth(global.LEFT_NOTE_SPAWN_LOCATION_X, global.COLLISION_5_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.LEFT,
 		  parent_collision_controller: left_guide_collision_controller
 	  }
 	);
-	var left_guide_collision_line_5 = instance_create_depth(17, 174, global.GUIDES_LAYER_DEPTH,
+	left_guide_collision_line_5 = instance_create_depth(global.LEFT_NOTE_SPAWN_LOCATION_X, global.COLLISION_6_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.LEFT,
@@ -91,48 +89,48 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 	);
 }
 { // RIGHT GUIDE ARROW COLLISION LINES
-	var right_guide_collision_controller = instance_create_depth(17, 145, global.GUIDES_LAYER_DEPTH, 
+	right_guide_collision_controller = instance_create_depth(0, 0, global.GUIDES_LAYER_DEPTH, 
 	  guide_note_collision_controller,
 	  {
 		  note_direction: NoteState.RIGHT
 	  }
 	);
-	var right_guide_collision_line_0 = instance_create_depth(122, 145, global.GUIDES_LAYER_DEPTH, 
+	right_guide_collision_line_0 = instance_create_depth(global.RIGHT_NOTE_SPAWN_LOCATION_X, global.COLLISION_1_LOCATION_Y, global.GUIDES_LAYER_DEPTH, 
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.RIGHT,
 		  parent_collision_controller: right_guide_collision_controller
 	  }
 	);
-	var right_guide_collision_line_1 = instance_create_depth(122, 151, global.GUIDES_LAYER_DEPTH,
+	right_guide_collision_line_1 = instance_create_depth(global.RIGHT_NOTE_SPAWN_LOCATION_X, global.COLLISION_2_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.RIGHT,
 		  parent_collision_controller: right_guide_collision_controller
 	  }
 	);
-	var right_guide_collision_line_2 = instance_create_depth(122, 157, global.GUIDES_LAYER_DEPTH,
+	right_guide_collision_line_2 = instance_create_depth(global.RIGHT_NOTE_SPAWN_LOCATION_X, global.COLLISION_3_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.RIGHT,
 		  parent_collision_controller: right_guide_collision_controller
 	  }
 	);
-	var right_guide_collision_line_3 = instance_create_depth(122, 162, global.GUIDES_LAYER_DEPTH,
+	right_guide_collision_line_3 = instance_create_depth(global.RIGHT_NOTE_SPAWN_LOCATION_X, global.COLLISION_4_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.RIGHT,
 		  parent_collision_controller: right_guide_collision_controller
 	  }
 	);
-	var right_guide_collision_line_4 = instance_create_depth(122, 168, global.GUIDES_LAYER_DEPTH,
+	right_guide_collision_line_4 = instance_create_depth(global.RIGHT_NOTE_SPAWN_LOCATION_X, global.COLLISION_5_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.RIGHT,
 		  parent_collision_controller: right_guide_collision_controller
 	  }
 	);
-	var right_guide_collision_line_5 = instance_create_depth(122, 174, global.GUIDES_LAYER_DEPTH,
+	right_guide_collision_line_5 = instance_create_depth(global.RIGHT_NOTE_SPAWN_LOCATION_X, global.COLLISION_6_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.RIGHT,
@@ -141,48 +139,48 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 	);
 }
 { // UP GUIDE ARROW COLLISION LINES
-	var up_guide_collision_controller = instance_create_depth(17, 145, global.GUIDES_LAYER_DEPTH, 
+	up_guide_collision_controller = instance_create_depth(0, 0, global.GUIDES_LAYER_DEPTH, 
 	  guide_note_collision_controller,
 	  {
 		  note_direction: NoteState.UP
 	  }
 	);
-	var up_guide_collision_line_0 = instance_create_depth(86, 145, global.GUIDES_LAYER_DEPTH, 
+	up_guide_collision_line_0 = instance_create_depth(global.UP_NOTE_SPAWN_LOCATION_X, global.COLLISION_1_LOCATION_Y, global.GUIDES_LAYER_DEPTH, 
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.UP,
 		  parent_collision_controller: up_guide_collision_controller
 	  }
 	);
-	var up_guide_collision_line_1 = instance_create_depth(86, 151, global.GUIDES_LAYER_DEPTH,
+	up_guide_collision_line_1 = instance_create_depth(global.UP_NOTE_SPAWN_LOCATION_X, global.COLLISION_2_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.UP,
 		  parent_collision_controller: up_guide_collision_controller
 	  }
 	);
-	var up_guide_collision_line_2 = instance_create_depth(86, 157, global.GUIDES_LAYER_DEPTH,
+	up_guide_collision_line_2 = instance_create_depth(global.UP_NOTE_SPAWN_LOCATION_X, global.COLLISION_3_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.UP,
 		  parent_collision_controller: up_guide_collision_controller
 	  }
 	);
-	var up_guide_collision_line_3 = instance_create_depth(86, 162, global.GUIDES_LAYER_DEPTH,
+	up_guide_collision_line_3 = instance_create_depth(global.UP_NOTE_SPAWN_LOCATION_X, global.COLLISION_4_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.UP,
 		  parent_collision_controller: up_guide_collision_controller
 	  }
 	);
-	var up_guide_collision_line_4 = instance_create_depth(86, 168, global.GUIDES_LAYER_DEPTH,
+	up_guide_collision_line_4 = instance_create_depth(global.UP_NOTE_SPAWN_LOCATION_X, global.COLLISION_5_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.UP,
 		  parent_collision_controller: up_guide_collision_controller
 	  }
 	);
-	var up_guide_collision_line_5 = instance_create_depth(86, 174, global.GUIDES_LAYER_DEPTH,
+	up_guide_collision_line_5 = instance_create_depth(global.UP_NOTE_SPAWN_LOCATION_X, global.COLLISION_6_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.UP,
@@ -191,48 +189,48 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 	);
 }	
 { // DOWN GUIDE ARROW COLLISION LINES
-	var down_guide_collision_controller = instance_create_depth(17, 145, global.GUIDES_LAYER_DEPTH, 
+	down_guide_collision_controller = instance_create_depth(0, 0, global.GUIDES_LAYER_DEPTH, 
 	  guide_note_collision_controller,
 	  {
 		  note_direction: NoteState.DOWN
 	  }
 	);
-	var down_guide_collision_line_0 = instance_create_depth(53, 145, global.GUIDES_LAYER_DEPTH, 
+	down_guide_collision_line_0 = instance_create_depth(global.DOWN_NOTE_SPAWN_LOCATION_X, global.COLLISION_1_LOCATION_Y, global.GUIDES_LAYER_DEPTH, 
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.DOWN,
 		  parent_collision_controller: down_guide_collision_controller
 	  }
 	);
-	var down_guide_collision_line_1 = instance_create_depth(53, 151, global.GUIDES_LAYER_DEPTH,
+	down_guide_collision_line_1 = instance_create_depth(global.DOWN_NOTE_SPAWN_LOCATION_X, global.COLLISION_2_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.DOWN,
 		  parent_collision_controller: down_guide_collision_controller
 	  }
 	);
-	var down_guide_collision_line_2 = instance_create_depth(53, 157, global.GUIDES_LAYER_DEPTH,
+	down_guide_collision_line_2 = instance_create_depth(global.DOWN_NOTE_SPAWN_LOCATION_X, global.COLLISION_3_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.DOWN,
 		  parent_collision_controller: down_guide_collision_controller
 	  }
 	);
-	var down_guide_collision_line_3 = instance_create_depth(53, 162, global.GUIDES_LAYER_DEPTH,
+	down_guide_collision_line_3 = instance_create_depth(global.DOWN_NOTE_SPAWN_LOCATION_X, global.COLLISION_4_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.DOWN,
 		  parent_collision_controller: down_guide_collision_controller
 	  }
 	);
-	var down_guide_collision_line_4 = instance_create_depth(53, 168, global.GUIDES_LAYER_DEPTH,
+	down_guide_collision_line_4 = instance_create_depth(global.DOWN_NOTE_SPAWN_LOCATION_X, global.COLLISION_5_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.DOWN,
 		  parent_collision_controller: down_guide_collision_controller
 	  }
 	);
-	var down_guide_collision_line_5 = instance_create_depth(53, 174, global.GUIDES_LAYER_DEPTH,
+	down_guide_collision_line_5 = instance_create_depth(global.DOWN_NOTE_SPAWN_LOCATION_X, global.COLLISION_6_LOCATION_Y, global.GUIDES_LAYER_DEPTH,
 	  guide_note_collision_line,
 	  {
 		  note_direction: NoteState.DOWN,
@@ -241,25 +239,25 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 	);
 }
 { // MISSED NOTE COLLISION LINES
-	var down_guide_missed_note = instance_create_depth(53, 205, global.GUIDES_LAYER_DEPTH, 
+	down_guide_missed_note = instance_create_depth(global.DOWN_NOTE_SPAWN_LOCATION_X, global.MISS_LOCATION_Y, global.GUIDES_LAYER_DEPTH, 
 		  guide_note_collision_line,
 		  {
 			  miss_line: true
 		  }
 		);
-	var up_guide_missed_note = instance_create_depth(86, 205, global.GUIDES_LAYER_DEPTH, 
+	up_guide_missed_note = instance_create_depth(global.UP_NOTE_SPAWN_LOCATION_X, global.MISS_LOCATION_Y, global.GUIDES_LAYER_DEPTH, 
 		  guide_note_collision_line,
 		  {
 			  miss_line: true
 		  }
 	);
-	var right_guide_missed_note = instance_create_depth(122, 205, global.GUIDES_LAYER_DEPTH, 
+	right_guide_missed_note = instance_create_depth(global.RIGHT_NOTE_SPAWN_LOCATION_X, global.MISS_LOCATION_Y, global.GUIDES_LAYER_DEPTH, 
 		  guide_note_collision_line,
 		  {
 			  miss_line: true
 		  }
 	);
-	var left_guide_missed_note = instance_create_depth(17, 205, global.GUIDES_LAYER_DEPTH, 
+	left_guide_missed_note = instance_create_depth(global.LEFT_NOTE_SPAWN_LOCATION_X, global.MISS_LOCATION_Y, global.GUIDES_LAYER_DEPTH, 
 		  guide_note_collision_line,
 		  {
 			  miss_line: true
@@ -268,5 +266,30 @@ var up_guide_arrow_inst = instance_create_depth(86, 160, global.GUIDES_LAYER_DEP
 }
 
 // Set up timer
-last_time = current_time;
+last_time = delta_time;
 interval = 1000;
+
+function play_song(song_file, song_data, song_speed) {
+	// Set up dance mode
+	dance_mode_pane = instance_create_depth(
+		global.DANCE_MODE_PANE_X, 
+		global.DANCE_MODE_PANE_Y, 
+		global.GUIDES_LAYER_DEPTH, 
+		dance_mode_grid
+	);
+	
+	// Play song
+	audio_play_sound(song_file, 1, false);
+	current_song_data = song_data;
+	song_timer_ms = 0;
+	current_song_speed = song_speed;
+}
+
+function end_song() {
+	if(dance_mode_pane != noone) {
+		instance_destroy(dance_mode_pane);
+		song_timer_ms = 0;
+		current_song_speed = 0;
+		current_song_data = [];
+	}
+}

@@ -1,7 +1,7 @@
 /// @description Go to selected option
 switch(selected_option) {
 	case 0: // Start game
-	    room_goto(Test_Room);
+	    room_goto(Main_Room);
 		break;
 	case 1:
 	    room_goto(Options);
