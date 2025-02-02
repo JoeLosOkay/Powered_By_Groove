@@ -23,7 +23,7 @@
   ],
   "name":"collision_line_blue",
   "nineSlice":null,
-  "origin":0,
+  "origin":1,
   "parent":{
     "name":"Misc",
     "path":"folders/Sprites/UI Elements/Misc.yy",
@@ -75,7 +75,7 @@
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":0,
+    "xorigin":16,
     "yorigin":0,
   },
   "swatchColours":null,

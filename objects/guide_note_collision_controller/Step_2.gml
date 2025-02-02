@@ -30,6 +30,7 @@ for (var i = 0; i < ds_list_size(collision_list); i++) {
 }
 
 // Only destroy the note that was generated the earliest.
+// TODO: Perhaps instead destroy the note that has the most hits...
 if(note_to_destroy != noone) {
 	if(ds_map_exists(num_hits_map, note_to_destroy)) {
 		note_to_destroy.hit(ds_map_find_value(num_hits_map, note_to_destroy));

@@ -57,13 +57,21 @@ global.MISS_LOCATION_Y = 205
 global.GUIDE_NOTE_SPAWN_LOCATION_Y = 160;
 
 // Pane locations
-global.DANCE_MODE_PANE_X = 200;
-global.DANCE_MODE_PANE_Y = 100;
+global.DANCE_MODE_PANE_X = 160;
+global.DANCE_MODE_PANE_Y = 30;
+
+// Game Modes
+enum Modes {
+	DropMode,
+	DanceMode
+}
+global.current_mode = Modes.DropMode;
 
 // Layer Names
 global.NOTES_LAYER_DEPTH = 1;
 global.GUIDES_LAYER_DEPTH = 2;
 global.UI_LAYER_DEPTH = 3;
+global.CHARACTER_LAYER_DEPTH = 4;
 
 // The chance that a powered note appears. 1/X, where 'X' is the chance.
 global.POWERED_NOTE_CHANCE = 10;
@@ -77,10 +85,18 @@ global.BASE_FOUR_COLLISION_POINTS = 3;
 global.BASE_FIVE_COLLISION_POINTS = 3;
 global.BASE_SIX_COLLISION_POINTS = 5;
 
+// Unlocked characters
+global.big_boss_unlocked = true;
+global.lenny_unlocked = true;
+global.steven_unlocked = false;
+global.dog_unlocked = false;
+
 // Power and multipler values
 global.total_power = 0;
 global.current_multiplier = 1;
+global.drop_mode_drop_speed = 1;
 
+// Power
 function get_total_power() {
     return global.total_power;
 }
@@ -88,6 +104,8 @@ function get_total_power() {
 function add_to_total_power(increment) {
 	global.total_power += increment;
 }
+
+global.total_power_to_win = 100;
 
 // Held note colors. Needed for rendering trail.
 global.HELD_NOTE_MISS_COLOR = #b6b6b6;
@@ -134,3 +152,11 @@ global.OPTIONS_MENU_RESOLUTION_OPTIONS = ["320x180", "640x360", "1280x720", "192
 global.resolution_index = 0;
 global.fx_volume_index = 10;
 global.music_volume_index = 10;
+
+// Pane Stuff
+function spawn_guide_arrow_box() {
+	global.GUIDE_NOTE_BOX = instance_create_depth(
+		0, 143, global.GUIDES_LAYER_DEPTH, guide_arrow_box_obj
+	);
+}
+

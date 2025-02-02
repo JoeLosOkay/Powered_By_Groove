@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"power_counter_pane_proper",
+    "path":"sprites/power_counter_pane_proper/power_counter_pane_proper.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

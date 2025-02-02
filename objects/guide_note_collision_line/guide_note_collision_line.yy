@@ -50,5 +50,5 @@
     "path":"sprites/collision_line_red/collision_line_red.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

@@ -28,8 +28,8 @@ global.test_song_note_data =
 	{e: 0, s: qn, d: left, l: 0},
 	{e: 0, s: qn, d: right, l: 0},
 	// half note tests
-	{e: 0, s: qn, d: left, l: 0},
-	{e: 0, s: hn, d: right, l: 0},
+	{e: 0, s: qn, d: left, l: hn_px},
+	{e: 0, s: hn, d: right, l: hn_px},
 	// whole note test
 	{e: 0, s: hn, d: up, l: wn_px},
 	// eigth note tests
@@ -82,4 +82,5 @@ global.test_song_note_data =
 	{e: 0, s: en, d: up, l: 0},
 	{e: 0, s: en, d: up, l: 0},
 	{e: 0, s: en, d: up, l: 0},
+	{e: 1, s: wn*2}
 ]

@@ -9,7 +9,10 @@ if(array_length(current_song_data) != 0 && current_song_note < array_length(curr
 	
 	// The song has ended
 	if(note_data.e == 1) {
-		end_song();
+		// Wait for the final note to be spawned to end song
+		if(song_timer_ms >= note_data.s) {
+			end_song();
+		}
 	} else {
 		// spawn note
 		if(song_timer_ms >= note_data.s) {

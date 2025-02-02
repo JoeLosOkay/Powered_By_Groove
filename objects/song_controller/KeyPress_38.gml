@@ -1,22 +1,16 @@
-/// @description Spawn Up Arrow
+/// @description Drop right note
 
-// Uncomment to test note dropping
-/*
-var is_powered = irandom(global.POWERED_NOTE_CHANCE) == 0;
-var note_direction = NoteState.NONE;
+if(global.current_mode == Modes.DropMode) {
+	var is_powered = irandom_range(1, global.POWERED_NOTE_CHANCE) == 1;
+	
+	var note_direction = NoteState.NONE;
+	if(is_powered) {
+		note_direction = NoteState.P_UP;
+	}
+	else {
+		note_direction = NoteState.UP;
+	}
 
-if(is_powered) {
-	note_direction = NoteState.P_UP;
+	// Only spawn singles when in drop mode
+	spawn_note(note_direction, direction_to_x(note_direction), global.drop_mode_drop_speed);
 }
-else {
-	note_direction = NoteState.UP;
-}
-var drop_speed = 2;
-
-var new_arrow = instance_create_depth(86, 0, global.NOTES_LAYER_DEPTH, note, 
-  {
-	  note_direction: note_direction,
-	  drop_speed: drop_speed
-  }
-);
-*/

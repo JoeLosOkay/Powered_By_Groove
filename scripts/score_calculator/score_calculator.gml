@@ -2,10 +2,12 @@
 
 function score_calculator(num_hits) {
 	var power_points = 0;
+	var note_hit = true;
 	
     switch(num_hits) {
 		case 0: // miss
 		  spawn_track_message(num_hits);
+		  note_hit = false;
 		  return;
 		case 1:
 		  power_points = global.BASE_ONE_COLLISION_POINTS * global.current_multiplier;
@@ -30,6 +32,9 @@ function score_calculator(num_hits) {
 		  break;
 	}
 	
+	if(note_hit) {
+		global.GUIDE_NOTE_BOX.note_hit();
+	}
 	spawn_track_message(num_hits);
 	add_to_total_power(power_points);
 }
@@ -41,6 +46,9 @@ function held_note_score_calculator(note_length, note_hit_length) {
 	var hit_ratio = note_hit_length / note_length;
 	var power_points = ceil(note_length * hit_ratio * global.current_multiplier);
 	
+	if(hit_ratio > EPSILON) { // miss
+		global.GUIDE_NOTE_BOX.note_hit();
+	}
 	spawn_track_message_held(hit_ratio);
 	add_to_total_power(power_points);
 }
